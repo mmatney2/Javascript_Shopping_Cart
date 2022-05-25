@@ -23,23 +23,23 @@ function shoppingCart(actionString, item, cartArray=[]){
                     return newCartArray;
                 }
             }
-        // case "remove_all_same_from_cart":
-        //     if(cart_item ==cart_items){
-        //         cartArray.pop()
-        //         return newCartArray; 
-        //     }
+        case "remove_all_same_from_cart":
+            if(cart_item ==cart_items){
+                cartArray.pop()
+                return newCartArray; 
+            }
             
-        // case "empty_cart":
-        //     for(let item_of_cart of cartArray){
-        //         cartArray.pop()
-        //         return newCartArray;
-        //     }
+        case "empty_cart":
+            for(let item_of_cart of cartArray){
+                cartArray.pop()
+                return newCartArray;
+            }
         default:
             console.log('default');
             break; 
     }
 }
 // let shoppingCart1 = shoppingCart(actionString="add_to_cart")
-let shoppingCart1 = shoppingCart(actionString='remove_same_from_cart', item.id)
+let shoppingCart1 = shoppingCart(actionString='add_to_cart', item.)
 // console.log(shoppingCart1)
 // shoppingCart(actionString2, item)
