@@ -1,45 +1,57 @@
-actionString=''
-item={
-    id:0
-}
 
-cartArray=[]
+let cartArray=[]
 
 
 function shoppingCart(actionString, item, cartArray=[]){
     let newCartArray=cartArray.slice()
     switch(actionString){
         case "add_to_cart":
-            cartArray.push(item)
-            newCartArray.push(cartArray)
-            console.log(newCartArray)
+            // cartArray.push(item)
+            newCartArray.push(item)
             return newCartArray;
-
   
         case "remove_same_from_cart":
-            for(let cart_item of cartArray){
-                if(cart_item==item.id){
-                    cartArray.pop()
-                    return newCartArray;
+            for(let i = 0; i < cartArray.length; i++){
+                if(cartArray[i].id==item.id){
+                    cartArray.splice(i, 1)
+                    newCartArray= cartArray
                 }
-            }
+            }return newCartArray;
+
         case "remove_all_same_from_cart":
-            if(cart_item ==cart_items){
-                cartArray.pop()
-                return newCartArray; 
-            }
+            let tempArray = []
+            for(let i = 0; i < cartArray.length; i++){
+                if(cartArray[i].type!=item.type){
+                    tempArray.push(cartArray[i])
+                }
+            }return tempArray;
             
         case "empty_cart":
-            for(let item_of_cart of cartArray){
-                cartArray.pop()
-                return newCartArray;
-            }
+            newCartArray = []
+            return newCartArray
         default:
             console.log('default');
             break; 
     }
 }
-// let shoppingCart1 = shoppingCart(actionString="add_to_cart")
-let shoppingCart1 = shoppingCart(actionString='add_to_cart', item.)
-// console.log(shoppingCart1)
-// shoppingCart(actionString2, item)
+let item = {id:1, name: "apple", type: "food"}
+let item2 = {id:2, name: "oranges", type: "food"}
+let item3 = {id:3, name: "banana", type: "food"}
+let item4 = {id:4, name: "english book", type: "book"}
+
+cartArray = shoppingCart("add_to_cart", item, cartArray)
+cartArray = shoppingCart("add_to_cart", item2, cartArray)
+cartArray = shoppingCart("add_to_cart", item3, cartArray)
+cartArray = shoppingCart("add_to_cart", item4, cartArray)
+console.log(cartArray)
+
+let removeItem={id:2}
+cartArray = shoppingCart("remove_same_from_cart", removeItem, cartArray)
+console.log(cartArray)
+
+let removeSameTypeItems={type: "food"}
+cartArray = shoppingCart("remove_all_same_from_cart", removeSameTypeItems, cartArray)
+console.log(cartArray)
+
+cartArray = shoppingCart("empty_cart", null, cartArray)
+console.log(cartArray)
